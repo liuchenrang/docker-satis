@@ -3,7 +3,14 @@
 /**
  * Satis configuration file
  */
-$app['satis.filename'] = '/app/config.json';
+$app['satis.filename'] = __DIR__.'/../satis.json';
+
+/**
+ * Satis file formating options
+ *
+ * See http://php.net/manual/en/json.constants.php for constants description
+ */
+$app['satis.file_formatting'] = JSON_PRETTY_PRINT;
 
 /**
  * Satis auditlog (cheap backup/versioning) path
@@ -19,12 +26,17 @@ $app['satis.class'] = 'Playbloom\\Satisfy\\Model\\Configuration';
  * Default values for a new repository
  */
 $app['composer.repository.type_default'] = 'git';
-$app['composer.repository.url_default'] = '';
+$app['composer.repository.url_default'] = 'git@github.com:YourAccount/';
+
+/**
+ * Composer repository options for ssl or auth
+ */
+$app['composer.repository.options'] = [];
 
 /**
  * Default repository url pattern
  */
-$app['repository.pattern'] = '.*';
+$app['repository.pattern'] = 'https://github.com/[a-zA-Z0-9-_]+/[a-zA-Z0-9-_\.]+(.git)?|git@github.com:[a-zA-Z0-9-_]+/[a-zA-Z0-9-_\.]+.git';
 
 /**
  * More restrictive username/email constraints for production
@@ -38,7 +50,7 @@ $app['auth'] = $app->share(function() {
 /**
  * If the simple standard login form should be used to restrict admin section
  */
-$app['auth.use_login_form'] = true;
+$app['auth.use_login_form'] = false;
 
 /**
  * Users authorized to access admin section (an array of username => password)
@@ -53,11 +65,3 @@ $app['auth.users'] = array(
     'admin' => '0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33',
     'john' => 'd6b4e84ee7f31d88617a6b60421451272ebf1a3a',
 );
-
-/**
- * If OpenID auth via Google should be used.
- * Ignored if auth.use_login_form is set to true
- */
-$app['auth.use_google_openid'] = false;
-
-

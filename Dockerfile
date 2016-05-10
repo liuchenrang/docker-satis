@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --force-yes --no-install-recommends \
 	build-essential \
 	software-properties-common \
 	cron \
-	nano \
+	vi \
 	git \
 	curl \
 	supervisor \
@@ -52,13 +52,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 ADD scripts /app/scripts
 
 ADD scripts/crontab /etc/cron.d/satis-cron
-ADD config.json /app/config.json
+ADD satis.json /app/satis.json
 ADD server.js /app/server.js
 ADD config.php /satisfy/app/config.php
 
 RUN chmod 0644 /etc/cron.d/satis-cron \
 	&& touch /var/log/satis-cron.log \
-	&& chmod 777 /app/config.json \
+	&& chmod 777 /app/satis.json \
 	&& chmod 777 /app/server.js \
 	&& chmod +x /app/scripts/startup.sh
 
