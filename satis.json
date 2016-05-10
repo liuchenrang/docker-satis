@@ -1,0 +1,11 @@
+{
+    "name": "Jiuyan Php Composer Repository",
+    "homepage": "http:\/\/10.10.10.105.132:8899",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https:\/\/github.com\/ivanakimov\/hashids.php.git"
+        }
+    ],
+    "require-all": true
+}

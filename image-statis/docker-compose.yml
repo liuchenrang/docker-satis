@@ -1,0 +1,13 @@
+satis:
+    image: docker.jiuyan.cc:5000/phpsatis:v1
+    volumes:
+        - ./config.php:/app/config.php
+        - ./satis.json:/app/config.json
+        - ./php.ini:/etc/php5/cli/php.ini
+        - ./php.ini:/etc/php5/fpm/php.ini
+        - ./errors.log:/tmp/php_errors.log
+        - ./satis.json:/satisfy/satis.json
+    ports:
+        - 8888:3000
+        - 8899:80
+        - 8833:3333
